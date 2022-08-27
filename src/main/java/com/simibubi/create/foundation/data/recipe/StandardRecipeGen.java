@@ -163,10 +163,10 @@ public class StandardRecipeGen extends CreateRecipeProvider {
 				.pattern("I")
 				.pattern("P")),
 
-		CAKE = create(() -> Items.CAKE).unlockedByTag(() -> AllTags.forgeItemTag("dough"))
+		CAKE = create(() -> Items.CAKE).unlockedByTag(() -> AllTags.forgeItemTag("dough").get(0))
 			.viaShaped(b -> b.define('E', Tags.Items.EGGS)
 				.define('S', Items.SUGAR)
-				.define('P', AllTags.forgeItemTag("dough"))
+				.define('P', AllTags.forgeItemTag("dough").get(0))
 				.define('M', () -> Items.MILK_BUCKET)
 				.pattern(" M ")
 				.pattern("SES")
@@ -261,7 +261,7 @@ public class StandardRecipeGen extends CreateRecipeProvider {
 		MECHANICAL_PRESS = create(AllBlocks.MECHANICAL_PRESS).unlockedBy(I::andesiteCasing)
 			.viaShaped(b -> b.define('C', I.andesiteCasing())
 				.define('S', I.shaft())
-				.define('I', AllTags.forgeItemTag("storage_blocks/iron"))
+				.define('I', AllTags.forgeItemTag("storage_blocks/iron").get(0))
 				.pattern("S")
 				.pattern("C")
 				.pattern("I")),
@@ -1068,7 +1068,12 @@ public class StandardRecipeGen extends CreateRecipeProvider {
 		CRUSHED_NICKEL = blastModdedCrushedMetal(AllItems.CRUSHED_NICKEL, NICKEL),
 
 		ZINC_ORE = create(AllItems.ZINC_INGOT::get).withSuffix("_from_ore")
-			.viaCookingTag(() -> AllTags.forgeItemTag("ores/zinc"))
+			.viaCookingTag(() -> AllTags.forgeItemTag("ores/zinc").get(0))
+			.rewardXP(1)
+			.inBlastFurnace(),
+
+		ZINC_ORE_COMMON = create(AllItems.ZINC_INGOT::get).withSuffix("_from_common_ore")
+			.viaCookingTag(() -> AllTags.forgeItemTag("ores/zinc").get(1))
 			.rewardXP(1)
 			.inBlastFurnace(),
 

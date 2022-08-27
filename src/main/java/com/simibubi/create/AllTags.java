@@ -4,7 +4,9 @@ import static com.simibubi.create.AllTags.NameSpace.FORGE;
 import static com.simibubi.create.AllTags.NameSpace.MOD;
 import static com.simibubi.create.AllTags.NameSpace.TIC;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.recipe.Mods;
@@ -36,8 +38,7 @@ public class AllTags {
 	private static final CreateRegistrate REGISTRATE = Create.registrate()
 		.creativeModeTab(() -> Create.BASE_CREATIVE_TAB);
 
-	public static <T> TagKey<T> optionalTag(Registry<T> registry,
-		ResourceLocation id) {
+	public static <T> TagKey<T> optionalTag(Registry<T> registry, ResourceLocation id) {
 		return TagKey.create(registry.key(), id);
 	}
 
@@ -45,16 +46,47 @@ public class AllTags {
 		return optionalTag(registry, new ResourceLocation("c", path));
 	}
 
-	public static TagKey<Block> forgeBlockTag(String path) {
-		return forgeTag(Registry.BLOCK, path);
+	public static <T> TagKey<T> commonTag(Registry<T> registry, String path) {
+		if (path.contains("/")) {
+			List<String> paths = List.of(path.split("/"));
+			Collections.reverse(paths);
+			String commonPath = String.join("_", paths);
+			return optionalTag(registry, new ResourceLocation("c", commonPath));
+		}
+		return optionalTag(registry, new ResourceLocation("c", path));
 	}
 
-	public static TagKey<Item> forgeItemTag(String path) {
-		return forgeTag(Registry.ITEM, path);
+	public static List<TagKey<Block>> forgeBlockTag(String path) {
+		List<TagKey<Block>> tags = new ArrayList<>();
+		tags.add(forgeTag(Registry.BLOCK, path));
+		tags.add(commonTag(Registry.BLOCK, path));
+		return tags;
 	}
 
-	public static TagKey<Fluid> forgeFluidTag(String path) {
-		return forgeTag(Registry.FLUID, path);
+	public static List<TagKey<Item>> forgeItemTag(String path) {
+		List<TagKey<Item>> tags = new ArrayList<>();
+		tags.add(forgeTag(Registry.ITEM, path));
+		tags.add(commonTag(Registry.ITEM, path));
+		return tags;
+	}
+
+	public static List<TagKey<Fluid>> forgeFluidTag(String path) {
+		List<TagKey<Fluid>> tags = new ArrayList<>();
+		tags.add(forgeTag(Registry.FLUID, path));
+		tags.add(commonTag(Registry.FLUID, path));
+		return tags;
+	}
+
+	public static TagKey<Block> commonBlockTag(String path) {
+		return commonTag(Registry.BLOCK, path);
+	}
+
+	public static TagKey<Item> commonItemTag(String path) {
+		return commonTag(Registry.ITEM, path);
+	}
+
+	public static TagKey<Fluid> commonFluidTag(String path) {
+		return commonTag(Registry.FLUID, path);
 	}
 
 	public static <T extends Block, P> NonNullFunction<BlockBuilder<T, P>, BlockBuilder<T, P>> axeOrPickaxe() {
@@ -70,14 +102,17 @@ public class AllTags {
 		return b -> b.tag(BlockTags.MINEABLE_WITH_PICKAXE);
 	}
 
-	public static <T extends Block, P> NonNullFunction<BlockBuilder<T, P>, ItemBuilder<BlockItem, BlockBuilder<T, P>>> tagBlockAndItem(
-		String... path) {
+	public static <T extends Block, P> NonNullFunction<BlockBuilder<T, P>, ItemBuilder<BlockItem, BlockBuilder<T, P>>> tagBlockAndItem(String... path) {
 		return b -> {
-			for (String p : path)
-				b.tag(forgeBlockTag(p));
+			for (String p : path) {
+				b.tag(forgeBlockTag(p).get(0));
+				b.tag(forgeBlockTag(p).get(1));
+			}
 			ItemBuilder<BlockItem, BlockBuilder<T, P>> item = b.item();
-			for (String p : path)
-				item.tag(forgeItemTag(p));
+			for (String p : path) {
+				item.tag(forgeItemTag(p).get(0));
+				item.tag(forgeItemTag(p).get(1));
+			}
 			return item;
 		};
 	}

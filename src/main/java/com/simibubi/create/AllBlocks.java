@@ -796,14 +796,14 @@ public class AllBlocks {
 
 	public static final BlockEntry<MetalLadderBlock> BRASS_LADDER =
 		REGISTRATE.block("brass_ladder", MetalLadderBlock::new)
-			.transform(
-				BuilderTransformers.ladder("brass", () -> DataIngredient.tag(AllTags.forgeItemTag("plates/brass"))))
+			.transform(BuilderTransformers.ladder("brass", () -> DataIngredient.tag(AllTags.forgeItemTag("plates/brass").get(0))))
+			.transform(BuilderTransformers.ladder("brass", () -> DataIngredient.tag(AllTags.forgeItemTag("plates/brass").get(1))))
 			.register();
 
 	public static final BlockEntry<MetalLadderBlock> COPPER_LADDER =
 		REGISTRATE.block("copper_ladder", MetalLadderBlock::new)
-			.transform(
-				BuilderTransformers.ladder("copper", () -> DataIngredient.tag(AllTags.forgeItemTag("plates/copper"))))
+			.transform(BuilderTransformers.ladder("copper", () -> DataIngredient.tag(AllTags.forgeItemTag("plates/copper").get(0))))
+			.transform(BuilderTransformers.ladder("copper", () -> DataIngredient.tag(AllTags.forgeItemTag("plates/copper").get(1))))
 			.register();
 
 	// Fluids
@@ -2012,6 +2012,7 @@ public class AllBlocks {
 		.tag(BlockTags.NEEDS_IRON_TOOL)
 		.lang("Block of Raw Zinc")
 		.transform(tagBlockAndItem("storage_blocks/raw_zinc"))
+		.tag(AllTags.commonItemTag("blocks/raw_zinc"))
 		.tag(Tags.Items.STORAGE_BLOCKS)
 		.build()
 		.register();
@@ -2026,6 +2027,7 @@ public class AllBlocks {
 			.tag(BlockTags.BEACON_BASE_BLOCKS)
 			.transform(tagBlockAndItem("storage_blocks/zinc"))
 			.tag(Tags.Items.STORAGE_BLOCKS)
+			.tag(AllTags.commonItemTag("blocks/zinc"))
 			.build()
 			.lang("Block of Zinc")
 			.register();
@@ -2033,7 +2035,7 @@ public class AllBlocks {
 	public static final BlockEntry<Block> BRASS_BLOCK = REGISTRATE.block("brass_block", Block::new)
 			.initialProperties(() -> Blocks.IRON_BLOCK)
 			.properties(p -> p.color(MaterialColor.TERRACOTTA_YELLOW))
-		.properties(p -> p.requiresCorrectToolForDrops())
+			.properties(p -> p.requiresCorrectToolForDrops())
 			.transform(pickaxeOnly())
 			.blockstate(simpleCubeAll("brass_storage_block"))
 			.tag(BlockTags.NEEDS_IRON_TOOL)
@@ -2041,9 +2043,11 @@ public class AllBlocks {
 			.tag(BlockTags.BEACON_BASE_BLOCKS)
 			.transform(tagBlockAndItem("storage_blocks/brass"))
 			.tag(Tags.Items.STORAGE_BLOCKS)
+			.tag(AllTags.commonItemTag("blocks/brass"))
 			.build()
 			.lang("Block of Brass")
-			.register();public static final BlockEntry<RotatedPillarBlock> ROSE_QUARTZ_BLOCK =
+			.register();
+	public static final BlockEntry<RotatedPillarBlock> ROSE_QUARTZ_BLOCK =
 		REGISTRATE.block("rose_quartz_block", RotatedPillarBlock::new)
 			.initialProperties(() -> Blocks.AMETHYST_BLOCK)
 			.properties(p -> p.color(MaterialColor.TERRACOTTA_PINK)
@@ -2080,12 +2084,14 @@ public class AllBlocks {
 
 	public static final CopperBlockSet COPPER_SHINGLES = new CopperBlockSet(REGISTRATE, "copper_shingles",
 		"copper_roof_top", CopperBlockSet.DEFAULT_VARIANTS, (c, p) -> {
-			p.stonecutting(DataIngredient.tag(AllTags.forgeItemTag("plates/copper")), c::get, 2);
+			p.stonecutting(DataIngredient.tag(AllTags.forgeItemTag("plates/copper").get(0)), c::get, 2);
+			p.stonecutting(DataIngredient.tag(AllTags.forgeItemTag("plates/copper").get(1)), c::get, 2);
 		});
 
 	public static final CopperBlockSet COPPER_TILES =
 		new CopperBlockSet(REGISTRATE, "copper_tiles", "copper_roof_top", CopperBlockSet.DEFAULT_VARIANTS, (c, p) -> {
-			p.stonecutting(DataIngredient.tag(AllTags.forgeItemTag("plates/copper")), c::get, 2);
+			p.stonecutting(DataIngredient.tag(AllTags.forgeItemTag("plates/copper").get(0)), c::get, 2);
+			p.stonecutting(DataIngredient.tag(AllTags.forgeItemTag("plates/copper").get(1)), c::get, 2);
 		});
 
 	// Load this class

@@ -194,7 +194,7 @@ public class MillingRecipeGen extends ProcessingRecipeGen {
 	protected GeneratedRecipe metalOre(String name, ItemEntry<? extends Item> crushed, int duration) {
 		return create(name + "_ore", b -> b.duration(duration)
 			.withCondition(DefaultResourceConditions.not(DefaultResourceConditions.itemTagsPopulated(TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation("c", name + "_ores")))))
-			.require(AllTags.forgeItemTag("ores/" + name))
+			.require(AllTags.forgeItemTag("ores/" + name).get(1))
 			.output(crushed.get()));
 	}
 

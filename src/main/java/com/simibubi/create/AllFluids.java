@@ -78,7 +78,7 @@ public class AllFluids {
 
 	public static final FluidEntry<VirtualFluid> TEA = REGISTRATE.virtualFluid("tea")
 			.lang("Builder's Tea")
-			.tag(AllTags.forgeFluidTag("tea"))
+			.tag(AllTags.forgeFluidTag("tea").get(0))
 			.onRegisterAfter(Item.class, tea -> {
 				Fluid still = tea.getSource();
 				Fluid flowing = tea.getFlowing();
@@ -104,7 +104,8 @@ public class AllFluids {
 					.tag(AllFluidTags.HONEY.tag)
 					.source(SimpleFlowableFluid.Still::new) // TODO: remove when Registrate fixes FluidBuilder
 					.bucket()
-					.tag(AllTags.forgeItemTag("buckets/honey"))
+					.tag(AllTags.forgeItemTag("buckets/honey").get(0))
+					.tag(AllTags.forgeItemTag("buckets/honey").get(1))
 					.build()
 					.renderHandler(() -> SimpleFluidRenderHandler::new)
 					.onRegisterAfter(Item.class, honey -> {
@@ -127,7 +128,7 @@ public class AllFluids {
 	public static final FluidEntry<SimpleFlowableFluid.Flowing> CHOCOLATE =
 			REGISTRATE.standardFluid("chocolate"/*, NoColorFluidAttributes::new*/)
 					.lang("Chocolate")
-					.tag(AllTags.forgeFluidTag("chocolate"))
+					.tag(AllTags.forgeFluidTag("chocolate").get(0))
 //					.attributes(b -> b.viscosity(1500)
 //							.density(1400))
 					.properties(p -> p.levelDecreasePerBlock(2)

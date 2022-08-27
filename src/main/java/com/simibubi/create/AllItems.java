@@ -1,6 +1,7 @@
 package com.simibubi.create;
 
 import static com.simibubi.create.AllTags.forgeItemTag;
+import static com.simibubi.create.AllTags.commonItemTag;
 import static com.simibubi.create.AllTags.AllItemTags.CREATE_INGOTS;
 import static com.simibubi.create.AllTags.AllItemTags.CRUSHED_ORES;
 import static com.simibubi.create.AllTags.AllItemTags.PLATES;
@@ -18,6 +19,8 @@ import static com.simibubi.create.foundation.data.recipe.CompatMetals.QUICKSILVE
 import static com.simibubi.create.foundation.data.recipe.CompatMetals.SILVER;
 import static com.simibubi.create.foundation.data.recipe.CompatMetals.TIN;
 import static com.simibubi.create.foundation.data.recipe.CompatMetals.URANIUM;
+
+import java.util.List;
 
 import com.simibubi.create.AllTags.AllItemTags;
 import com.simibubi.create.content.contraptions.components.structureMovement.glue.SuperGlueItem;
@@ -100,8 +103,7 @@ public class AllItems {
 		CRAFTER_SLOT_COVER = ingredient("crafter_slot_cover"), ELECTRON_TUBE = ingredient("electron_tube");
 
 	public static final ItemEntry<SequencedAssemblyItem>
-
-	INCOMPLETE_PRECISION_MECHANISM = sequencedIngredient("incomplete_precision_mechanism"),
+		INCOMPLETE_PRECISION_MECHANISM = sequencedIngredient("incomplete_precision_mechanism"),
 		INCOMPLETE_REINFORCED_SHEET = sequencedIngredient("unprocessed_obsidian_sheet"),
 		INCOMPLETE_TRACK = sequencedIngredient("incomplete_track");
 
@@ -155,10 +157,10 @@ public class AllItems {
 		.lang("Builder's Tea")
 		.register();
 
-	public static final ItemEntry<Item> RAW_ZINC =
-		taggedIngredient("raw_zinc", forgeItemTag("raw_materials/zinc"), TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation("c", "raw_materials")));
+	public static final ItemEntry<Item> RAW_ZINC = taggedIngredient("raw_zinc", forgeItemTag("raw_materials/zinc"), commonItemTag("raw_ores/zinc"), TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation("c", "raw_materials")));
 
-	public static final ItemEntry<Item> ANDESITE_ALLOY = taggedIngredient("andesite_alloy", CREATE_INGOTS.tag),
+	public static final ItemEntry<Item>
+		ANDESITE_ALLOY = taggedIngredient("andesite_alloy", CREATE_INGOTS.tag),
 		ZINC_INGOT = taggedIngredient("zinc_ingot", forgeItemTag("ingots/zinc"), CREATE_INGOTS.tag),
 		BRASS_INGOT = taggedIngredient("brass_ingot", forgeItemTag("ingots/brass"), CREATE_INGOTS.tag);
 
@@ -178,8 +180,8 @@ public class AllItems {
 			.properties(p -> p.rarity(Rarity.UNCOMMON))
 			.register();
 
-	public static final ItemEntry<Item> COPPER_NUGGET =
-		taggedIngredient("copper_nugget", forgeItemTag("nuggets/copper"), Tags.Items.NUGGETS),
+	public static final ItemEntry<Item>
+		COPPER_NUGGET = taggedIngredient("copper_nugget", forgeItemTag("nuggets/copper"), Tags.Items.NUGGETS),
 		ZINC_NUGGET = taggedIngredient("zinc_nugget", forgeItemTag("nuggets/zinc"), Tags.Items.NUGGETS),
 		BRASS_NUGGET = taggedIngredient("brass_nugget", forgeItemTag("nuggets/brass"), Tags.Items.NUGGETS);
 
@@ -190,8 +192,8 @@ public class AllItems {
 			.lang("Nugget of Experience")
 			.register();
 
-	public static final ItemEntry<Item> COPPER_SHEET =
-		taggedIngredient("copper_sheet", forgeItemTag("plates/copper"), PLATES.tag),
+	public static final ItemEntry<Item>
+		COPPER_SHEET = taggedIngredient("copper_sheet", forgeItemTag("plates/copper"), PLATES.tag),
 		BRASS_SHEET = taggedIngredient("brass_sheet", forgeItemTag("plates/brass"), PLATES.tag),
 		IRON_SHEET = taggedIngredient("iron_sheet", forgeItemTag("plates/iron"), PLATES.tag),
 		GOLDEN_SHEET = taggedIngredient("golden_sheet", forgeItemTag("plates/gold"), PLATES.tag, ItemTags.PIGLIN_LOVED),
@@ -408,6 +410,21 @@ public class AllItems {
 		return REGISTRATE.item(name, Item::new)
 			.tag(tags)
 			.register();
+	}
+
+	private static ItemEntry<Item> taggedIngredient(String name, List<TagKey<Item>> tags) {
+		return taggedIngredient(name, tags);
+	}
+
+	@SafeVarargs
+	private static ItemEntry<Item> taggedIngredient(String name, List<TagKey<Item>>... tags) {
+		return taggedIngredient(name, tags);
+	}
+
+	@SafeVarargs
+	private static ItemEntry<Item> taggedIngredient(String name, List<TagKey<Item>> tagsList, TagKey<Item>... tags) {
+		for (TagKey<Item> tag : tags) tagsList.add(tag);
+		return taggedIngredient(name, tagsList);
 	}
 
 	private static ItemEntry<TagDependentIngredientItem> compatCrushedOre(CompatMetals metal) {
