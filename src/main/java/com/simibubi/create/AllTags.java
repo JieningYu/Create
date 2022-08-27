@@ -437,8 +437,6 @@ public class AllTags {
 
 		AllBlockTags.ORE_OVERRIDE_STONE.includeAll(BlockTags.STONE_ORE_REPLACEABLES);
 
-		//Common Tags -> Forge Tags
-
 		registerCompat();
 	}
 
