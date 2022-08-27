@@ -797,13 +797,11 @@ public class AllBlocks {
 	public static final BlockEntry<MetalLadderBlock> BRASS_LADDER =
 		REGISTRATE.block("brass_ladder", MetalLadderBlock::new)
 			.transform(BuilderTransformers.ladder("brass", () -> DataIngredient.tag(AllTags.forgeItemTag("plates/brass").get(0))))
-			.transform(BuilderTransformers.ladder("brass", () -> DataIngredient.tag(AllTags.forgeItemTag("plates/brass").get(1))))
 			.register();
 
 	public static final BlockEntry<MetalLadderBlock> COPPER_LADDER =
 		REGISTRATE.block("copper_ladder", MetalLadderBlock::new)
 			.transform(BuilderTransformers.ladder("copper", () -> DataIngredient.tag(AllTags.forgeItemTag("plates/copper").get(0))))
-			.transform(BuilderTransformers.ladder("copper", () -> DataIngredient.tag(AllTags.forgeItemTag("plates/copper").get(1))))
 			.register();
 
 	// Fluids
@@ -2085,13 +2083,11 @@ public class AllBlocks {
 	public static final CopperBlockSet COPPER_SHINGLES = new CopperBlockSet(REGISTRATE, "copper_shingles",
 		"copper_roof_top", CopperBlockSet.DEFAULT_VARIANTS, (c, p) -> {
 			p.stonecutting(DataIngredient.tag(AllTags.forgeItemTag("plates/copper").get(0)), c::get, 2);
-			p.stonecutting(DataIngredient.tag(AllTags.forgeItemTag("plates/copper").get(1)), c::get, 2);
 		});
 
 	public static final CopperBlockSet COPPER_TILES =
 		new CopperBlockSet(REGISTRATE, "copper_tiles", "copper_roof_top", CopperBlockSet.DEFAULT_VARIANTS, (c, p) -> {
 			p.stonecutting(DataIngredient.tag(AllTags.forgeItemTag("plates/copper").get(0)), c::get, 2);
-			p.stonecutting(DataIngredient.tag(AllTags.forgeItemTag("plates/copper").get(1)), c::get, 2);
 		});
 
 	// Load this class

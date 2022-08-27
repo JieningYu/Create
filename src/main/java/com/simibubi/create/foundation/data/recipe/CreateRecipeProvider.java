@@ -64,16 +64,8 @@ public abstract class CreateRecipeProvider extends FabricRecipeProvider {
 			return AllTags.forgeItemTag("ingots/gold").get(0);
 		}
 
-		static TagKey<Item> goldCommon() {
-			return AllTags.forgeItemTag("ingots/gold").get(1);
-		}
-
 		static TagKey<Item> goldSheet() {
 			return AllTags.forgeItemTag("plates/gold").get(0);
-		}
-
-		static TagKey<Item> goldSheetCommon() {
-			return AllTags.forgeItemTag("plates/gold").get(1);
 		}
 
 		static TagKey<Item> stone() {
@@ -104,16 +96,8 @@ public abstract class CreateRecipeProvider extends FabricRecipeProvider {
 			return AllTags.forgeItemTag("ingots/brass").get(0);
 		}
 
-		static TagKey<Item> brassCommon() {
-			return AllTags.forgeItemTag("ingots/brass").get(1);
-		}
-
 		static TagKey<Item> brassSheet() {
 			return AllTags.forgeItemTag("plates/brass").get(0);
-		}
-
-		static TagKey<Item> brassSheetCommon() {
-			return AllTags.forgeItemTag("plates/brass").get(1);
 		}
 
 		static TagKey<Item> iron() {
@@ -123,32 +107,17 @@ public abstract class CreateRecipeProvider extends FabricRecipeProvider {
 		static TagKey<Item> ironNugget() {
 			return AllTags.forgeItemTag("nuggets/iron").get(0);
 		}
-		static TagKey<Item> ironNuggetCommon() {
-			return AllTags.forgeItemTag("nuggets/iron").get(1);
-		}
 
 		static TagKey<Item> zinc() {
 			return AllTags.forgeItemTag("ingots/zinc").get(0);
-		}
-
-		static TagKey<Item> zincCommon() {
-			return AllTags.forgeItemTag("ingots/zinc").get(1);
 		}
 
 		static TagKey<Item> ironSheet() {
 			return AllTags.forgeItemTag("plates/iron").get(0);
 		}
 
-		static TagKey<Item> ironSheetCommon() {
-			return AllTags.forgeItemTag("plates/iron").get(1);
-		}
-
 		static TagKey<Item> sturdySheet() {
 			return AllTags.forgeItemTag("plates/obsidian").get(0);
-		}
-
-		static TagKey<Item> sturdySheetCommon() {
-			return AllTags.forgeItemTag("plates/obsidian").get(1);
 		}
 
 		static ItemLike brassCasing() {
@@ -175,24 +144,12 @@ public abstract class CreateRecipeProvider extends FabricRecipeProvider {
 			return AllTags.forgeItemTag("storage_blocks/brass").get(0);
 		}
 
-		static TagKey<Item> brassBlockCommon() {
-			return AllTags.forgeItemTag("blocks/brass").get(1);
-		}
-
 		static TagKey<Item> zincBlock() {
 			return AllTags.forgeItemTag("storage_blocks/zinc").get(0);
 		}
 
-		static TagKey<Item> zincBlockCommon() {
-			return AllTags.forgeItemTag("blocks/zinc").get(1);
-		}
-
 		static TagKey<Item> wheatFlour() {
 			return AllTags.forgeItemTag("flour/wheat").get(0);
-		}
-
-		static TagKey<Item> wheatFlourCommon() {
-			return AllTags.forgeItemTag("flour/wheat").get(1);
 		}
 
 		static ItemLike copper() {
@@ -203,32 +160,16 @@ public abstract class CreateRecipeProvider extends FabricRecipeProvider {
 			return AllTags.forgeItemTag("plates/copper").get(0);
 		}
 
-		static TagKey<Item> copperSheetCommon() {
-			return AllTags.forgeItemTag("plates/copper").get(1);
-		}
-
 		static TagKey<Item> copperNugget() {
 			return AllTags.forgeItemTag("nuggets/copper").get(0);
-		}
-
-		static TagKey<Item> copperNuggetCommon() {
-			return AllTags.forgeItemTag("nuggets/copper").get(1);
 		}
 
 		static TagKey<Item> brassNugget() {
 			return AllTags.forgeItemTag("nuggets/brass").get(0);
 		}
 
-		static TagKey<Item> brassNuggetCommon() {
-			return AllTags.forgeItemTag("nuggets/brass").get(1);
-		}
-
 		static TagKey<Item> zincNugget() {
 			return AllTags.forgeItemTag("nuggets/zinc").get(0);
-		}
-
-		static TagKey<Item> zincNuggetCommon() {
-			return AllTags.forgeItemTag("nuggets/zinc").get(1);
 		}
 
 		static ItemLike copperCasing() {

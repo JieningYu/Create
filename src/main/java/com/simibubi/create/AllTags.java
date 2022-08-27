@@ -407,8 +407,7 @@ public class AllTags {
 		AllItemTags.CREATE_INGOTS.includeIn(AllItemTags.BEACON_PAYMENT);
 		AllItemTags.CREATE_INGOTS.includeIn(Tags.Items.INGOTS);
 
-		AllItemTags.UPRIGHT_ON_BELT.add(Items.GLASS_BOTTLE, Items.POTION, Items.SPLASH_POTION, Items.LINGERING_POTION,
-			Items.HONEY_BOTTLE, Items.CAKE);
+		AllItemTags.UPRIGHT_ON_BELT.add(Items.GLASS_BOTTLE, Items.POTION, Items.SPLASH_POTION, Items.LINGERING_POTION, Items.HONEY_BOTTLE, Items.CAKE);
 
 		AllItemTags.SLEEPERS.add(Items.STONE_SLAB, Items.SMOOTH_STONE_SLAB, Items.ANDESITE_SLAB);
 
@@ -437,6 +436,8 @@ public class AllTags {
 			Blocks.TRIPWIRE, Blocks.TRIPWIRE_HOOK, Blocks.DAYLIGHT_DETECTOR, Blocks.TARGET);
 
 		AllBlockTags.ORE_OVERRIDE_STONE.includeAll(BlockTags.STONE_ORE_REPLACEABLES);
+
+		//Common Tags -> Forge Tags
 
 		registerCompat();
 	}
