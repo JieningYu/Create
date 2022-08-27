@@ -20,6 +20,7 @@ import static com.simibubi.create.foundation.data.recipe.CompatMetals.SILVER;
 import static com.simibubi.create.foundation.data.recipe.CompatMetals.TIN;
 import static com.simibubi.create.foundation.data.recipe.CompatMetals.URANIUM;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.simibubi.create.AllTags.AllItemTags;
@@ -413,12 +414,28 @@ public class AllItems {
 	}
 
 	private static ItemEntry<Item> taggedIngredient(String name, List<TagKey<Item>> tags) {
-		return taggedIngredient(name, tags);
+		switch (tags.size()) {
+			case 1:
+				return taggedIngredient(name, tags.get(0));
+			case 2:
+				return taggedIngredient(name, tags.get(0), tags.get(1));
+			case 3:
+				return taggedIngredient(name, tags.get(0), tags.get(1), tags.get(2));
+			case 4:
+				return taggedIngredient(name, tags.get(0), tags.get(1), tags.get(2), tags.get(3));
+			case 5:
+				return taggedIngredient(name, tags.get(0), tags.get(1), tags.get(2), tags.get(3), tags.get(4));
+			default:
+				break;
+		}
+		return taggedIngredient(name, tags.get(0));
 	}
 
 	@SafeVarargs
 	private static ItemEntry<Item> taggedIngredient(String name, List<TagKey<Item>>... tags) {
-		return taggedIngredient(name, tags);
+		List<TagKey<Item>> tagList = new ArrayList<>();
+		for (List<TagKey<Item>> list : tags) tagList.addAll(list);
+		return taggedIngredient(name, tagList);
 	}
 
 	@SafeVarargs

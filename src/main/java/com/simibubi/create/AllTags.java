@@ -48,8 +48,9 @@ public class AllTags {
 
 	public static <T> TagKey<T> commonTag(Registry<T> registry, String path) {
 		if (path.contains("/")) {
-			List<String> paths = List.of(path.split("/"));
-			Collections.reverse(paths);
+			List<String> paths0 = List.of(path.split("/"));
+			List<String> paths = new ArrayList<>();
+			for (int i = paths0.size() - 1; i >= 0; i--) paths.add(paths0.get(i));
 			String commonPath = String.join("_", paths);
 			return optionalTag(registry, new ResourceLocation("c", commonPath));
 		}
